@@ -1,0 +1,69 @@
+#root {
+  max-width: 1280px;
+  margin: 0 auto;  
+  width: 100%;
+  text-align: center;
+}
+
+/* Colocar un fondo de color azul-escuro al body*/
+body {
+  background-color: #0a192f;
+}
+.header{
+  /* Colocar el header arriba */
+  position: relative;
+  top: 0;
+  left: 0;
+}
+
+.formulario{
+  /* Colocar el formulario debajo del header */
+  position: relative;
+  
+}
+
+.card-left{
+  /* colocar una opacidad sobre la imagen */
+  /* opacity: 0.5; */
+  /* colocar un tamaño de imagen */
+  /* width: 100%; */
+}
+
+.card-title{
+  /* Colocar la etiqueta card-title sobre la imagen*/  
+  position: absolute;
+  padding: 20px;
+  margin-top: 20px;
+  font-size: 20px;
+  color: #fff;
+  text-shadow: 2px 2px 4px #000000;
+
+
+}
+.card-date{
+  /* Colocar la fecha debajo del título */
+  position: absolute;
+  padding: 20px;
+  margin-top: 50px;
+  font-size: 15px;
+  color: #fff;
+  text-shadow: 2px 2px 4px #000000;
+
+}
+
+.card-temp{
+  position: absolute;
+  padding-left: 80px;
+  margin-top: 180px;
+  font-size: 40px;
+  color: #fff;
+  -webkit-text-stroke: 1px #000000;
+
+  }
+
+.card-desc{
+  position: absolute;
+  padding-left: 20px;
+  margin-top: 220px;
+}
+

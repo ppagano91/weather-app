@@ -1,0 +1,191 @@
+import React from "react";
+import Sppiner from "./Sppiner";
+
+const Card = ({ show, loading, clima, forecast }) => {
+  // Obtener la fecha actual con formato DD/MM/YYYY
+  const fechaActual = new Date().toLocaleDateString("es-ES", {
+    day: "numeric",
+    month: "long",
+    year: "numeric",
+  });
+
+  let icono = "";
+  let urlIcono = "";
+
+  let iconUrl3 = "";
+  let iconUrl6 = "";
+  let iconUrl9 = "";
+
+  let forecast3 = "";
+  let forecast6 = "";
+  let forecast9 = "";
+
+  // Función para formatear temperatura de Kelvin a Celsius
+  const kelvinToCelsius = (kelvin) => {
+    return Math.round(kelvin - 273.15);
+  };
+
+  if (loading) return <Sppiner />;
+
+  if (show) {
+    // obtener el ícono del clima
+    icono = clima?.weather[0].icon;
+
+    // URL del ícono
+    urlIcono = `http://openweathermap.org/img/w/${icono}.png`;
+
+    // obtener el pronóstico del clima a las 3 horas
+    iconUrl3 = forecast?.list[1].weather[0].icon;
+    // obtener el pronóstico del clima a las 6 horas
+    iconUrl6 = forecast?.list[2].weather[0].icon;
+    // obtener el pronóstico del clima a las 9 horas
+    iconUrl9 = forecast?.list[3].weather[0].icon;
+
+    // URL del ícono a las 3 horas
+    iconUrl3 = `http://openweathermap.org/img/w/${iconUrl3}.png`;
+    // URL del ícono a las 6 horas
+    iconUrl6 = `http://openweathermap.org/img/w/${iconUrl6}.png`;
+    // URL del ícono a las 9 horas
+    iconUrl9 = `http://openweathermap.org/img/w/${iconUrl9}.png`;
+
+    // Obtener fecha de cada pronóstico
+    // forecast3 = new Date(forecast?.list[1].dt_txt).toLocaleDateString("es-ES", {
+    //   hour: "numeric",
+    //   day: "numeric",
+    //   month: "short",
+    //   year: "numeric",
+    // });
+
+    // forecast6 = new Date(forecast?.list[2].dt_txt).toLocaleDateString("es-ES", {
+    //   hour: "numeric",
+    //   day: "numeric",
+    //   month: "short",
+    //   year: "numeric",
+    // });
+
+    // forecast9 = new Date(forecast?.list[3].dt_txt).toLocaleDateString("es-ES", {
+    //   hour: "numeric",
+    //   day: "numeric",
+    //   month: "short",
+    //   year: "numeric",
+    // });
+  }
+
+  return (
+    <div className="mt-5">
+      {show ? (
+        <div className="container">
+          <div className="card mb-3 mx-auto bg-dark text-light">
+            <div className="row g-0">
+              <div className="col-md-4 card-left">
+                {/* Colocar el nombre de la ciudad */}
+                <h3 className="card-title">{clima?.name}</h3>
+                {/* Colocar la fecha actual */}
+                <p className="card-date">{fechaActual}</p>
+                {/* Colocar la temperatura actual */}
+                <p className="card-temp">
+                  {kelvinToCelsius(clima?.main.temp)}°C
+                </p>
+                {/* Colocar el ícono del clima */}
+                <p className="card-desc">
+                  <img src={urlIcono} alt="icono" />
+                  {clima?.weather[0].description}
+                </p>
+
+                <img
+                  src={`https://images.pexels.com/photos/1980720/pexels-photo-1980720.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1`}
+                  alt="..."
+                  className="img-fluid rounded-start"
+                />
+              </div>
+              <div className="col-md-8">
+                <div className="card-body text-start mt-2">
+                  {/* Temperatura máxima */}
+                  <p className="card-text">
+                    <span className="fw-bold">Temperatura máxima:</span>{" "}
+                    {kelvinToCelsius(clima?.main.temp_max)}°C
+                  </p>
+                  {/* Temperatura mínima */}
+                  <p className="card-text">
+                    <span className="fw-bold">Temperatura mínima:</span>{" "}
+                    {kelvinToCelsius(clima?.main.temp_min)}°C
+                  </p>
+                  {/* Sensación térmica */}
+                  <p className="card-text">
+                    <span className="fw-bold">Sensación térmica:</span>{" "}
+                    {kelvinToCelsius(clima?.main.feels_like)}°C
+                  </p>
+                  {/* Humedad */}
+                  <p className="card-text">
+                    <span className="fw-bold">Humedad:</span>{" "}
+                    {clima?.main.humidity}%
+                  </p>
+                  {/* Velocidad del viento */}
+                  <p className="card-text">
+                    <span className="fw-bold">Velocidad del viento:</span>{" "}
+                    {clima?.wind?.speed} m/s
+                  </p>
+                  {/* Presión atmosférica */}
+                  <p className="card-text">
+                    <span className="fw-bold">Presión atmosférica:</span>{" "}
+                    {clima?.main.pressure} hPa
+                  </p>
+                </div>
+                <hr />
+                <div className="row mt-4">
+                  <div className="col">
+                    {/* Colocar el pronostico a las 3 hs */}
+                    <p>{forecast3} h</p>
+                    <p className="description">
+                      {/* Colocar imagen */}
+                      <img src={iconUrl3} alt="icono" />
+                      {forecast?.list[1].weather[0].description}
+                    </p>
+                    {/* Colocar temperatura */}
+                    <p className="temp">
+                      {kelvinToCelsius(forecast?.list[1].main.temp)}°C
+                    </p>
+                  </div>
+                  <div className="col">
+                    {/* Colocar el pronostico a las 3 hs */}
+                    <p>{forecast6} h</p>
+                    <p className="description">
+                      {/* Colocar imagen */}
+                      <img src={iconUrl6} alt="icono" />
+                      {forecast?.list[2].weather[0].description}
+                    </p>
+                    {/* Colocar temperatura */}
+                    <p className="temp">
+                      {kelvinToCelsius(forecast?.list[2].main.temp)}°C
+                    </p>
+                  </div>
+                  <div className="col">
+                    {/* Colocar el pronostico a las 3 hs */}
+                    <p>{forecast9} h</p>
+                    <p className="description">
+                      {/* Colocar imagen */}
+                      <img src={iconUrl9} alt="icono" />
+                      {forecast?.list[3].weather[0].description}
+                    </p>
+                    {/* Colocar temperatura */}
+                    <p className="temp">
+                      {kelvinToCelsius(forecast?.list[3].main.temp)}°C
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      ) : (
+        <div className="card text-center">
+          <div className="card-header">
+            <h2>Sin Datos</h2>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+};
+
+export default Card;
