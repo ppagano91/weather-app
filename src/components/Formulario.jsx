@@ -2,7 +2,7 @@
 import { useState } from "react";
 import PropTypes from "prop-types";
 
-const Formulario = ({ getLocation }) => {
+const Formulario = ({ setLocation }) => {
   /*
     Crear un estado para guardar el valor del input con el nombre de ciudad
     El estado comienza como una cadena vacía
@@ -19,7 +19,7 @@ const Formulario = ({ getLocation }) => {
       alert("El campo no puede estar vacío");
       return;
     }
-    getLocation(city);
+    setLocation(city);
   };
 
   // Crear función obtenerCiudadUsuario
@@ -29,7 +29,7 @@ const Formulario = ({ getLocation }) => {
       .then((response) => response.json())
       .then((data) => {
         const cityUser = data.city;
-        getLocation(cityUser);
+        setLocation(cityUser);
       });
 
     // navigator.geolocation.getCurrentPosition(
@@ -96,5 +96,5 @@ const Formulario = ({ getLocation }) => {
 export default Formulario;
 
 Formulario.propTypes = {
-  getLocation: PropTypes.func.isRequired,
+  setLocation: PropTypes.func.isRequired,
 };

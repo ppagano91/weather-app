@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 
 import { MapContainer, TileLayer, Marker, useMap } from "react-leaflet";
+// import { useMapEvents } from "react-leaflet-control";
 
 import "leaflet/dist/leaflet.css";
 
@@ -30,7 +31,7 @@ const MapUpdater = (props) => {
 };
 
 const Map = (props) => {
-  const { coordinates } = props;
+  const { coordinates, setLocation } = props;
 
   // Obtener la ubicación del usuario en latitud y longitud
   const [mapCenter, setMapCenter] = useState([
@@ -44,6 +45,42 @@ const Map = (props) => {
     }
   }, [coordinates]);
 
+  const handleDoubleClick = (e) => {
+    const { latlng } = e;
+    const { lat, lng } = latlng;
+
+    // Hacer la llamada a la API de geocodificación inversa
+    // para obtener el nombre de la ciudad más cercana
+    const reverseGeocodeUrl = `https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lng}&zoom=10&addressdetails=1`;
+
+    fetch(reverseGeocodeUrl)
+      .then((response) => response.json())
+      .then((data) => {
+        const city =
+          data.address.city ||
+          data.address.town ||
+          data.address.village ||
+          data.address.hamlet;
+
+        // Actualizar el estado con el nombre de la ciudad
+        // console.log("Ciudad más cercana:", city);
+        if (city) {
+          setLocation(city);
+        }
+      })
+      .catch((error) => {
+        console.error("Error al obtener la ciudad:", error);
+      });
+  };
+
+  const MapUpdater2 = () => {
+    const map = useMap();
+
+    map.on("dblclick", handleDoubleClick);
+
+    return null;
+  };
+
   return (
     // This code creates a map with a marker at the center of the map.
     // It is used to display the location of the user input.
@@ -53,13 +90,15 @@ const Map = (props) => {
       <MapContainer
         style={{ height: "300px" }}
         center={mapCenter}
-        zoom={10}
+        zoom={8}
         scrollWheelZoom={false}
         zoomControl={false}
         doubleClickZoom={false}
-        dragging={false}
+        // dragging={false}
         attributionControl={false}
       >
+        {/* Quisiera seleccionar en el mapa una ubicación y obtener datos de ese lugar*/}
+
         {/* This code creates a map layer using the OpenStreetMap tile server. */}
         <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
 
@@ -68,6 +107,8 @@ const Map = (props) => {
 
         {/*Necesito actualizar la posición del mapa cuando cambien las coordenadas*/}
         <MapUpdater mapCenter={mapCenter} />
+        {/* Manejar el evento de doble clic */}
+        <MapUpdater2 />
       </MapContainer>
     </div>
   );
@@ -81,6 +122,7 @@ Map.propTypes = {
     lat: PropTypes.number.isRequired,
     lon: PropTypes.number.isRequired,
   }).isRequired,
+  setLocation: PropTypes.func.isRequired,
 };
 
 MapUpdater.propTypes = {

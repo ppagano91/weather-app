@@ -19,51 +19,151 @@ body {
 .formulario{
   /* Colocar el formulario debajo del header */
   position: relative;
+}
+.card-container{
+  /* Que respete el ancho */
+  margin: 0 auto;
+  padding: 0;
+  
+}
+.container{
+  /* Que respete el ancho */
+  margin: 0 auto;
+  padding: 0;
   
 }
 
-.card-left{
-  /* colocar una opacidad sobre la imagen */
-  /* opacity: 0.5; */
-  /* colocar un tamaño de imagen */
-  /* width: 100%; */
+.card-body-container{  
+  position: relative;
+  
+}
+
+.card-body{
+  background-color: rgba(0, 0, 0, 0.5);
+  margin: 0 auto;
+  padding: 0; 
+  position: absolute;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: space-around;
+  
+  z-index: 401;
+}
+
+.map{
+  width: 100%;
+}
+
+.card-content{
+  height: 500px;
+}
+
+.card-image{
+  /* Colocar una imagen de fondo */
+  height: 100%;
+  background-image: url("https://images.pexels.com/photos/1980720/pexels-photo-1980720.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1");
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.card-image-top{
+  /* Colocar el contenido el la parte superior de la etiqueta */
+  height: 50%;
+  background-color: rgba(0, 0, 0, 0.25);
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: top;
+}
+
+.card-image-bottom{
+  /* Colocar el contenido el la parte inferior de la etiqueta */
+  height: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
+  align-items: bottom;
+  background-color: rgba(0, 0, 0, 0.25);
 }
 
 .card-title{
-  /* Colocar la etiqueta card-title sobre la imagen*/  
-  position: absolute;
-  padding: 20px;
   margin-top: 20px;
-  font-size: 20px;
   color: #fff;
   text-shadow: 2px 2px 4px #000000;
-
-
 }
+
 .card-date{
   /* Colocar la fecha debajo del título */
-  position: absolute;
-  padding: 20px;
-  margin-top: 50px;
-  font-size: 15px;
   color: #fff;
   text-shadow: 2px 2px 4px #000000;
-
 }
 
 .card-temp{
-  position: absolute;
-  padding-left: 80px;
-  margin-top: 180px;
-  font-size: 40px;
-  color: #fff;
-  -webkit-text-stroke: 1px #000000;
-
+  margin: 0;  
+  background-color: rgba(255, 255, 255, 0.5);
+  color: black;
   }
 
 .card-desc{
-  position: absolute;
-  padding-left: 20px;
-  margin-top: 220px;
+  margin: 0;  
 }
 
+
+.card-text{  
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;  
+  align-items: center;
+}
+
+.forecast{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: center;
+  margin: 0 auto;
+  padding: 0;
+  width: 100%;  
+  color: #fff;
+  /* Colocar alguna animación o algo innovador */
+  animation: fadeIn 5s ease-in-out;  
+}
+.forecast-title{
+  width: 100%;
+  text-align: center;
+  color: #fff;
+  background-color: rgba(200, 200, 200, 0.5);
+}
+
+.forecast-col{
+  /* Colocar un borde */
+  border: 1px solid #fff;
+  border-radius: 5px;
+  margin: 5px;
+  padding: 0px;
+}
+
+.forecast .date{
+  background-color: rgba(218, 165, 32,0.5);
+  margin: 0;
+  font-weight: bold;
+}
+.forecast .description{
+  margin: 0;
+  background-color: rgba(135, 206, 235,0.5);
+}
+
+.forecast .temp {
+  margin: 0;
+  background-color: rgba(255, 255, 255,0.5);
+  color: black;
+}
+
+.spinner{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-top: -50px;
+  margin-left: -50px;  
+}

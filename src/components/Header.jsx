@@ -13,7 +13,7 @@ const Header = () => {
         {/* El título debe estar en el centro*/}
         {/* Etiqueta h2 */}
         {/* Clase mx-auto, estar en negrita y letra mediana y color blanco */}
-        <h2 className="mx-auto fw-bold text-white">Predicción Meteorológica</h2>
+        <h2 className="mx-auto fw-bold text-white">CLIMA APP</h2>
       </div>
     </header>
   );

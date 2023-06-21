@@ -1,7 +1,6 @@
-import React from "react";
 import "../assets/css/Spinner.css";
 
-const Sppiner = () => {
+const Spinner = () => {
   return (
     <>
       {/* Crear un Spinner */}
@@ -23,4 +22,4 @@ const Sppiner = () => {
   );
 };
 
-export default Sppiner;
+export default Spinner;
