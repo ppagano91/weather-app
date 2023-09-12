@@ -97,8 +97,6 @@ const Map = (props) => {
         // dragging={false}
         attributionControl={false}
       >
-        {/* Quisiera seleccionar en el mapa una ubicación y obtener datos de ese lugar*/}
-
         {/* This code creates a map layer using the OpenStreetMap tile server. */}
         <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
 

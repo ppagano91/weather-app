@@ -25,7 +25,7 @@ const Formulario = ({ setLocation }) => {
   // Crear función obtenerCiudadUsuario
   const obtenerCiudadUsuario = () => {
     // Obtener la ciudad de la computadora del usuario
-    fetch("http://ip-api.com/json")
+    fetch("https://ipinfo.io/json")
       .then((response) => response.json())
       .then((data) => {
         const cityUser = data.city;
