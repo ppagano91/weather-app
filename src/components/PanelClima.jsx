@@ -23,6 +23,9 @@ const PanelClima = ({ location, setLocation }) => {
       setLoading(true);
       try {
         const appId = import.meta.env.VITE_API_KEY;
+
+        
+        // Crear la url para consultar el clima actual y la de los próximos días
         let urlWeather = `https://api.openweathermap.org/data/2.5/weather?q=${ciudad}&appid=${appId}&lang=es`;
         let urlForecast = `https://api.openweathermap.org/data/2.5/forecast?q=${ciudad}&appid=${appId}&lang=es`;
 
@@ -62,7 +65,14 @@ const PanelClima = ({ location, setLocation }) => {
         <Card clima={weather} forecast={forecast} setLocation={setLocation} />
       ) : (
         <div className="text-center text-white m-100">
-          <h4>No se ha ingresado una Ciudad</h4>
+          {/* Agregar una imagen sobre el clima cuando no se haya buscado nada aún */}
+          <img
+            src="https://images.theconversation.com/files/442675/original/file-20220126-17-1i0g402.jpg?ixlib=rb-1.1.0&q=45&auto=format&w=1280&h=500&fit=crop"
+            // centrar
+            className="mx-auto"
+            alt="gif"
+          />
+          
         </div>
       )}
     </div>
